@@ -11,6 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
     RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallBack
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallBack) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_row_hero, parent, false)
@@ -23,9 +29,8 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
         holder.tvName.text = name
         holder.tvDescription.text = description
 
-        holder.itemView.setOnClickListener{
-            Toast.makeText(holder.itemView.context, "Kamu memilih " + listHero[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
-        }
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listHero[holder.adapterPosition]) }
+
     }
 
     override fun getItemCount(): Int = listHero.size
@@ -34,5 +39,9 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
         var tvDescription: TextView = itemView.findViewById(R.id.tv_item_description)
+    }
+
+    interface OnItemClickCallBack {
+        fun onItemClicked(data: Hero)
     }
 }
