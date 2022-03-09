@@ -28,12 +28,11 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
             .into(holder.binding.imgItemPhoto)
         holder.binding.tvItemName.text = name
         holder.binding.tvItemDescription.text = description
-
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listHero[holder.adapterPosition]) }
 
     }
 
-    override fun getItemCount(): Int = listHero.size
+    override fun getItemCount() = listHero.size
 
     class ListViewHolder(var binding: ItemRowHeroBinding) : RecyclerView.ViewHolder(binding.root)
 
