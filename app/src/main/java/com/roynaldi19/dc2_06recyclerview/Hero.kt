@@ -1,4 +1,4 @@
-package com.roynaldi19.bfaa02_04recyclerview
+package com.roynaldi19.dc2_06recyclerview
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class Hero(
     var name: String,
     var description: String,
-    var photo: String
+    var photo: Int
 ) : Parcelable

@@ -1,4 +1,4 @@
-package com.roynaldi19.bfaa02_04recyclerview
+package com.roynaldi19.dc2_06recyclerview
 
 import org.junit.Test
 
