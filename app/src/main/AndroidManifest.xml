@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BFAA02_04RecyclerView">
         <activity
-            android:name="com.roynaldi19.dc2_06recyclerview.MainActivity"
+            android:name="com.roynaldi19.dc2_06recyclerview.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

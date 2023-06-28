@@ -1,4 +1,4 @@
-package com.roynaldi19.dc2_06recyclerview
+package com.roynaldi19.dc2_06recyclerview.view
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,18 +7,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.roynaldi19.dc2_06recyclerview.R
+import com.roynaldi19.dc2_06recyclerview.adapter.ListHeroAdapter
+import com.roynaldi19.dc2_06recyclerview.databinding.ActivityMainBinding
+import com.roynaldi19.dc2_06recyclerview.model.Hero
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var rvHeroes: RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private val list = ArrayList<Hero>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        rvHeroes = findViewById(R.id.rv_heroes)
-        rvHeroes.setHasFixedSize(true)
+        binding.rvHeroes.setHasFixedSize(true)
 
         list.addAll(getListHeroes())
         showRecyclerList()
@@ -32,10 +35,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_list -> {
-                rvHeroes.layoutManager = LinearLayoutManager(this)
+                binding.rvHeroes.layoutManager = LinearLayoutManager(this)
             }
+
             R.id.action_grid -> {
-                rvHeroes.layoutManager = GridLayoutManager(this, 2)
+                binding.rvHeroes.layoutManager = GridLayoutManager(this, 2)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -54,9 +58,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList() {
-        rvHeroes.layoutManager = LinearLayoutManager(this)
+        binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         val listHeroAdapter = ListHeroAdapter(list)
-        rvHeroes.adapter = listHeroAdapter
+        binding.rvHeroes.adapter = listHeroAdapter
         listHeroAdapter.setOnItemClickCallback(object : ListHeroAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Hero) {
                 showSelectedHero(data)

@@ -1,4 +1,4 @@
-package com.roynaldi19.dc2_06recyclerview
+package com.roynaldi19.dc2_06recyclerview.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
